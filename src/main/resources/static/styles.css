@@ -1,0 +1,138 @@
+:root {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    color: #1f2933;
+}
+
+body {
+    margin: 0;
+    padding: 0 1.5rem 3rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+h1, h2 {
+    margin: 0.5rem 0;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.column {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1);
+    padding: 1rem;
+    min-height: 400px;
+}
+
+.column-body {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.column-body.drag-over {
+    outline: 2px dashed #3b82f6;
+}
+
+.task {
+    background-color: #fef3c7;
+    border-radius: 6px;
+    padding: 0.75rem;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15);
+    cursor: grab;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.task-description {
+    margin: 0.5rem 0;
+    white-space: pre-wrap;
+}
+
+.task-meta {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #4b5563;
+}
+
+#task-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field input,
+.field textarea,
+.field select {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+button[type="submit"], #show-archive {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 900px) {
+    #board {
+        grid-template-columns: 1fr;
+    }
+}
+
+#archive {
+    margin-top: 2rem;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1);
+}
+
+#archive-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#archive-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}

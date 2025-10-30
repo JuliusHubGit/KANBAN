@@ -1,0 +1,67 @@
+@startuml KanbanClasses
+skinparam classAttributeIconSize 0
+
+class Task {
+  Long id
+  String title
+  String description
+  TaskStatus status
+  String assigneeName
+  String assigneeEmail
+  LocalDate dueDate
+  LocalDateTime createdAt
+}
+
+class ArchivedTask {
+  Long id
+  Long originalTaskId
+  String title
+  String description
+  TaskStatus status
+  String assigneeName
+  String assigneeEmail
+  LocalDate dueDate
+  LocalDateTime archivedAt
+}
+
+enum TaskStatus {
+  TODO
+  DOING
+  DONE
+}
+
+class TaskRepository
+class ArchivedTaskRepository
+
+class TaskService {
+  +List<Task> getAllActiveTasks()
+  +List<ArchivedTask> getAllArchivedTasks()
+  +Task createTask(Task)
+  +Task updateTask(Long, Task)
+  +Task moveTask(Long, TaskStatus)
+  +void deleteTask(Long)
+}
+
+class NotificationService {
+  +void notifyAssignee(Task, String)
+}
+
+class TaskController {
+  +List<Task> listActive()
+  +List<ArchivedTask> listArchived()
+  +ResponseEntity<Task> create(TaskRequest)
+  +Task update(Long, TaskRequest)
+  +Task move(Long, MoveTaskRequest)
+  +ResponseEntity<Void> delete(Long)
+}
+
+TaskService --> TaskRepository
+TaskService --> ArchivedTaskRepository
+TaskService --> NotificationService
+TaskController --> TaskService
+ArchivedTask --> TaskStatus
+Task --> TaskStatus
+ArchivedTaskRepository --> ArchivedTask
+TaskRepository --> Task
+
+@enduml
